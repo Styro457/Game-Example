@@ -6,29 +6,18 @@ from pygame.locals import *
 from pygame.math import Vector2
 
 from objects import Object, Bullet
+import data
 
-objects = []
-
-def create_object(new_object):
-    objects.append(new_object)
-    return new_object
-
-def remove_object(object_to_remove):
-    objects.remove(object_to_remove)
-
-# initialize pygame
-pygame.init()
-
-# Define the dimensions of screen object
-screen = pygame.display.set_mode((800, 600))
+data.init()
 
 # instantiate all square objects
-create_object(Object(Vector2(0, 0)))
-create_object(Bullet(Vector2(0, 0), Vector2(0.02, 0.02)))
 
 gameOn = True
 # Our game loop
 while gameOn:
+    data.delta_time = pygame.time.get_ticks() - data.time
+    data.time = pygame.time.get_ticks()
+
     # for loop through the event queue
     for event in pygame.event.get():
 
@@ -45,15 +34,15 @@ while gameOn:
             gameOn = False
 
     # Draw background
-    screen.fill((255, 255, 255))
+    data.screen.fill((255, 255, 255))
 
     # Update all objects
-    for obj in objects:
+    for obj in data.objects:
         obj.update()
 
     # Draw all objects
-    for obj in objects:
-        obj.draw(screen)
+    for obj in data.objects:
+        obj.draw()
 
 
     # Update the display using flip
