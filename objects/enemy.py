@@ -48,8 +48,8 @@ def get_random_location_outside():
 
 class EnemySpawner(Point):
 
-    enemy_spawn_counter = 1500
-    delay = 2000
+    enemy_spawn_counter = 0
+    delay = 1400
 
     def __init__(self, enemy_color=(150, 0, 0)):
         Point.__init__(self)
@@ -63,7 +63,7 @@ class EnemySpawner(Point):
         self.enemy_spawn_counter += data.delta_time
         if self.enemy_spawn_counter > self.delay:
             self.enemy_spawn_counter = 0
-            self.delay -= 60
+            self.delay -= 36
             if self.delay < 500:
                 self.delay = 500
             Enemy(get_random_location_outside(), 0.1, data.player, color=self.enemy_color)
