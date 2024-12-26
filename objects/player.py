@@ -42,7 +42,7 @@ class Bullet(Object):
     def __init__(self, position, direction, speed = 0.1):
         size = Vector2(10, 10)
 
-        super(Bullet, self).__init__(position, size, color=(25, 25, 25))
+        super(Bullet, self).__init__(position, size, color=data.color_scheme["bullet"])
 
         self.speed = speed
         self.direction = direction
