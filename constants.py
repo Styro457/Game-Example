@@ -38,7 +38,7 @@ color_schemes = [
         "background": (30, 30, 30),    # Dark gray
         "player": (0, 120, 255),       # Medium blue
         "gun": (10, 10, 10),           # Near black
-        "bullet": (50, 50, 50),        # Medium gray
+        "bullet": (200, 200, 200),        # Medium gray
         "enemies": (255, 80, 0),       # Vivid orange
         "ui": (200, 200, 200)          # Light gray
     },
@@ -70,7 +70,7 @@ color_schemes = [
         "background": (50, 20, 50),    # Dark purple
         "player": (0, 200, 255),       # Bright cyan
         "gun": (10, 10, 10),           # Almost black
-        "bullet": (40, 40, 40),        # Dark gray
+        "bullet": (200, 200, 200),        # Dark gray
         "enemies": (255, 70, 0),       # Warm orange-red
         "ui": (220, 220, 220)          # Light gray
     },
