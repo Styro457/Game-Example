@@ -27,67 +27,67 @@ zero = Vector2(0, 0)
 
 color_schemes = [
     {
-        "background": (255, 255, 255),
-        "player": (0, 200, 255),
-        "gun": (0, 0, 0),
-        "bullet": (25, 25, 25),
-        "enemies": (150, 0, 0),
-        "ui": (0, 0, 0)
+        "background": (255, 255, 255),  # Bright white
+        "player": (0, 200, 255),       # Bright cyan
+        "gun": (0, 0, 0),              # Black
+        "bullet": (25, 25, 25),        # Dark gray
+        "enemies": (150, 0, 0),        # Deep red
+        "ui": (0, 0, 0)                # Black
     },
     {
-        "background": (50, 50, 50),
-        "player": (0, 120, 255),
-        "gun": (10, 10, 10),
-        "bullet": (20, 20, 20),
-        "enemies": (255, 80, 0),
-        "ui": (200, 200, 200)
+        "background": (30, 30, 30),    # Dark gray
+        "player": (0, 120, 255),       # Medium blue
+        "gun": (10, 10, 10),           # Near black
+        "bullet": (50, 50, 50),        # Medium gray
+        "enemies": (255, 80, 0),       # Vivid orange
+        "ui": (200, 200, 200)          # Light gray
     },
     {
-        "background": (240, 248, 255),
-        "player": (0, 150, 200),
-        "gun": (30, 30, 30),
-        "bullet": (50, 50, 50),
-        "enemies": (200, 50, 0),
-        "ui": (20, 20, 20)
+        "background": (250, 240, 230), # Light cream
+        "player": (0, 180, 230),       # Light blue
+        "gun": (20, 20, 20),           # Very dark gray
+        "bullet": (40, 40, 40),        # Dark gray
+        "enemies": (200, 30, 0),       # Bright red
+        "ui": (10, 10, 10)             # Blackish
     },
     {
-        "background": (0, 0, 0),
-        "player": (0, 170, 255),
-        "gun": (15, 15, 15),
-        "bullet": (50, 50, 50),
-        "enemies": (255, 60, 20),
-        "ui": (180, 180, 180)
+        "background": (0, 50, 100),    # Dark navy blue
+        "player": (0, 230, 255),       # Bright cyan
+        "gun": (15, 15, 15),           # Very dark gray
+        "bullet": (35, 35, 35),        # Darker gray
+        "enemies": (255, 100, 0),      # Strong orange
+        "ui": (220, 220, 220)          # Light gray
     },
     {
-        "background": (255, 239, 213),
-        "player": (0, 130, 230),
-        "gun": (10, 10, 10),
-        "bullet": (40, 40, 40),
-        "enemies": (255, 69, 0),
-        "ui": (20, 20, 20)
+        "background": (255, 250, 220), # Pale yellow
+        "player": (50, 150, 250),      # Soft blue
+        "gun": (5, 5, 5),              # Blackish
+        "bullet": (25, 25, 25),        # Dark gray
+        "enemies": (255, 60, 10),      # Fiery orange
+        "ui": (30, 30, 30)             # Dark gray
     },
     {
-        "background": (240, 240, 240),
-        "player": (0, 100, 255),
-        "gun": (20, 20, 20),
-        "bullet": (40, 40, 40),
-        "enemies": (220, 0, 0),
-        "ui": (0, 0, 0)
+        "background": (50, 20, 50),    # Dark purple
+        "player": (0, 200, 255),       # Bright cyan
+        "gun": (10, 10, 10),           # Almost black
+        "bullet": (40, 40, 40),        # Dark gray
+        "enemies": (255, 70, 0),       # Warm orange-red
+        "ui": (220, 220, 220)          # Light gray
     },
     {
-        "background": (50, 50, 100),
-        "player": (0, 200, 255),
-        "gun": (0, 0, 0),
-        "bullet": (30, 30, 30),
-        "enemies": (255, 100, 0),
-        "ui": (220, 220, 220)
+        "background": (20, 40, 60),    # Deep slate blue
+        "player": (0, 150, 255),       # Sky blue
+        "gun": (15, 15, 15),           # Near black
+        "bullet": (35, 35, 35),        # Dark gray
+        "enemies": (255, 100, 50),     # Salmon orange
+        "ui": (200, 200, 200)          # Light gray
     },
     {
-        "background": (255, 250, 240),
-        "player": (0, 150, 240),
-        "gun": (5, 5, 5),
-        "bullet": (15, 15, 15),
-        "enemies": (255, 80, 30),
-        "ui": (20, 20, 20)
+        "background": (220, 230, 240), # Light cool gray
+        "player": (0, 140, 230),       # Bright blue
+        "gun": (10, 10, 10),           # Blackish
+        "bullet": (30, 30, 30),        # Very dark gray
+        "enemies": (255, 60, 30),      # Deep orange
+        "ui": (20, 20, 20)             # Blackish gray
     }
 ]
