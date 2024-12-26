@@ -14,8 +14,16 @@ class Player(Object):
     def update(self):
         pressed_keys = pygame.key.get_pressed()
         for key, direction in constants.key_controls.items():
-           if pressed_keys[key]:
+            if pressed_keys[key]:
+                old_position = self.position
                 self.set_position(self.position + constants.directions[direction] * data.delta_time * self.speed)
+                if not data.screen.get_rect().colliderect(self.rect):
+                    self.set_position(old_position)
+                else:
+                    for obj in data.objects:
+                        if obj.layer == constants.layers["objects"] and self.rect.colliderect(obj.rect):
+                            self.set_position(old_position)
+                            break
 
         if pygame.mouse.get_pressed()[0]:
             if not self.shot:
@@ -54,9 +62,13 @@ class Bullet(Object):
             self.kill()
 
         for obj in data.objects:
-            if obj.layer == constants.layers["enemies"] and self.rect.colliderect(obj.rect):
+            if obj.layer == constants.layers["enemies"]:
+                if self.rect.colliderect(obj.rect):
+                    self.kill()
+                    obj.kill()
+                    break
+            elif obj.layer == constants.layers["objects"] and self.rect.colliderect(obj.rect):
                 self.kill()
-                obj.kill()
                 break
 
 class Gun(Object):

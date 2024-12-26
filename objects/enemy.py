@@ -18,7 +18,14 @@ class Enemy(Object):
             direction = (self.target.position - self.position)
             if direction != constants.zero:
                 direction = direction.normalize()
-                self.set_position(self.position + direction * self.speed * data.delta_time)
+                new_position = direction * self.speed * data.delta_time
+                directions = [Vector2(new_position.x, 0), Vector2(0, new_position.y)]
+                for x in directions:
+                    old_position = self.position
+                    self.set_position(self.position + x)
+                    for obj in data.objects:
+                        if obj.layer == constants.layers["objects"] and self.rect.colliderect(obj.rect):
+                            self.set_position(old_position)
 
         if self.rect.colliderect(self.target.rect):
             self.target.kill()

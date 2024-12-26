@@ -5,7 +5,7 @@ from pygame.math import Vector2
 import data, constants
 from objects.enemy import EnemySpawner
 from objects.player import Player, Gun
-from objects.base import Text
+from objects.base import Text, Object
 import visual.effects as effects
 
 data.init()
@@ -15,6 +15,12 @@ data.player.layer = constants.layers["player"]
 gun = Gun(Vector2(0, 0), Vector2(15, 15), color=data.color_scheme["gun"])
 gun.parent = data.player
 gun.distance = 15
+
+Object(Vector2(200, 200), Vector2(40, 90), color=(0, 0, 0), layer=constants.layers["objects"])
+Object(Vector2(600, 500), Vector2(120, 40), color=(0, 0, 0), layer=constants.layers["objects"])
+Object(Vector2(540, 460), Vector2(40, 120), color=(0, 0, 0), layer=constants.layers["objects"])
+
+
 
 EnemySpawner(data.color_scheme["enemies"])
 
