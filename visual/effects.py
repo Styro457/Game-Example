@@ -10,7 +10,7 @@ def camera_shake(shake_intensity, duration):
     intensity = shake_intensity
     amount_left = duration
 
-def camera_shake_update(amount):
+def _camera_shake_update(amount):
         data.camera = Vector2(0, 0) + Vector2(random.uniform(-amount, amount), random.uniform(-amount, amount))
 
 def update():
@@ -19,7 +19,7 @@ def update():
 
     if amount_left > 0:
 
-        camera_shake_update(intensity)
+        _camera_shake_update(intensity)
         amount_left -= data.delta_time
         return True
     else:
