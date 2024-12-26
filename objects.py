@@ -47,13 +47,27 @@ class Object(pygame.sprite.Sprite):
         self.size = size
         self.update_graphics()
 
+# Bullet class
+# When it hits an enemy, it kills itself and the enemy
 class Bullet(Object):
 
     direction = Vector2(0, 0)
 
-    def __init__(self, position, direction):
-        super(Bullet, self).__init__(position)
-        self.direction = direction
+    def __init__(self, position, direction, speed = 0.1):
+        size = Vector2(10, 10)
+
+        super(Bullet, self).__init__(position, size, color=(25, 25, 25))
+
+        self.direction = (direction-position).normalize() * speed
 
     def update(self):
-        self.position += self.direction
+        self.set_position(self.position + self.direction * data.delta_time)
+
+        if not data.screen.get_rect().colliderect(self.rect):
+            self.kill()
+
+        for obj in data.objects:
+            if obj.layer == data.layers["enemies"] and self.rect.colliderect(obj.rect):
+                self.kill()
+                obj.kill()
+                break
