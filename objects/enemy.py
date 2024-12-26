@@ -8,8 +8,8 @@ from objects.base import Object, Point
 
 class Enemy(Object):
 
-    def __init__(self, position, speed, target=None, color=(150, 0, 0)):
-        super(Enemy, self).__init__(position, color=color, layer=constants.layers["enemies"])
+    def __init__(self, position, speed, target=None, color=(150, 0, 0), size=Vector2(20, 20)):
+        super(Enemy, self).__init__(position, color=color, size=size, layer=constants.layers["enemies"])
         self.speed = speed
         self.target = target
 
@@ -49,7 +49,7 @@ def get_random_location_outside():
 class EnemySpawner(Point):
 
     enemy_spawn_counter = 0
-    delay = 1400
+    delay = 1050
 
     def __init__(self, enemy_color=(150, 0, 0)):
         Point.__init__(self)
@@ -63,8 +63,8 @@ class EnemySpawner(Point):
         self.enemy_spawn_counter += data.delta_time
         if self.enemy_spawn_counter > self.delay:
             self.enemy_spawn_counter = 0
-            self.delay -= 36
-            if self.delay < 500:
-                self.delay = 500
-            Enemy(get_random_location_outside(), 0.1, data.player, color=self.enemy_color)
-
+            self.delay -= 15
+            if self.delay < 200:
+                self.delay = 200
+            random_size = random.randrange(17, 34)
+            Enemy(get_random_location_outside(), random.randrange(7, 18)/100, data.player, color=self.enemy_color, size = Vector2(random_size, random_size))
