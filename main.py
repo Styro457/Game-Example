@@ -11,6 +11,14 @@ import data
 data.init()
 
 # instantiate all square objects
+player = Object(Vector2(800/2, 600/2))
+player.layer = data.layers["player"]
+
+Object(Vector2(50, 70), color=(255, 0, 0), layer=data.layers["enemies"])
+Object(Vector2(500, 550), color=(255, 0, 0), layer=data.layers["enemies"])
+Object(Vector2(600, 400), color=(255, 0, 0), layer=data.layers["enemies"])
+Object(Vector2(60, 400), color=(255, 0, 0), layer=data.layers["enemies"])
+Object(Vector2(700, 200), color=(255, 0, 0), layer=data.layers["enemies"])
 
 gameOn = True
 # Our game loop
