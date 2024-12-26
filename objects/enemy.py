@@ -49,7 +49,7 @@ def get_random_location_outside():
 class EnemySpawner(Point):
 
     enemy_spawn_counter = 0
-    delay = 1050
+    delay = 1200
 
     def __init__(self, enemy_color=(150, 0, 0)):
         Point.__init__(self)
