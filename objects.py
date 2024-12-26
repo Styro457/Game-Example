@@ -2,6 +2,7 @@ import pygame, math
 from pygame import Vector2
 
 import data
+import effects
 
 # Define our generic object class
 # give it all the properties and methods of pygame.sprite.Sprite
@@ -25,7 +26,7 @@ class Object(pygame.sprite.Sprite):
         pass
 
     def draw(self):
-        data.screen.blit(self.surf, self.rect.topleft)
+        data.screen.blit(self.surf, self.rect.topleft - data.camera)
 
     def kill(self):
         data.remove_object(self)
@@ -58,16 +59,24 @@ class Bullet(Object):
 
         super(Bullet, self).__init__(position, size, color=(25, 25, 25))
 
-        self.direction = (direction-position).normalize() * speed
+        self.speed = speed
+        self.direction = (direction-position).normalize()
+
+        spawn_particle(position+self.direction.normalize()*15, 4, math.pi/4, self.direction,
+                       (255, 158, 68), Vector2(20, 20), 0.1, 0.015)
+        effects.camera_shake(5,  100)
 
     def update(self):
-        self.set_position(self.position + self.direction * data.delta_time)
+        self.set_position(self.position + self.direction * self.speed * data.delta_time)
 
         if not data.screen.get_rect().colliderect(self.rect):
             self.kill()
 
         for obj in data.objects:
             if obj.layer == data.layers["enemies"] and self.rect.colliderect(obj.rect):
+                spawn_particle(obj.position, 4, size=Vector2(10, 10), color=(150, 40, 40), speed=0.01, shrinking_speed=0.005)
+                spawn_particle(obj.position, 12, size=Vector2(6, 6), color=(255, 0, 0), speed=0.1, shrinking_speed=0.001)
+
                 self.kill()
                 obj.kill()
                 break
@@ -87,8 +96,27 @@ class Particle(Object) :
         if self.size.x < 0 or self.size.y < 0 :
             self.kill()
 
-def spawn_particle(position, amount):
+def spawn_particle(position, amount,
+                   angle = math.pi*2 ,direction=Vector2(1, 0),
+                   color=(255, 0, 0), size = Vector2(5, 5), speed = 0.1, shrinking_speed = 0.01) :
+    direction = direction.copy().normalize()
     for i in range(amount):
-        angle = 2 * math.pi * i / amount  # Angle in radians
-        Particle(position, Vector2(20, 20), (255, 0, 0), Vector2(math.cos(angle), math.sin(angle)), 0.2, 0.05)
+        current_angle = angle * i / amount - angle / 2  # Center the arc around 0 angle
 
+        rotation_matrix = [
+            [math.cos(current_angle), -math.sin(current_angle)],
+            [math.sin(current_angle), math.cos(current_angle)]
+        ]
+        final_direction = Vector2(
+            rotation_matrix[0][0] * direction.x + rotation_matrix[0][1] * direction.y,
+            rotation_matrix[1][0] * direction.x + rotation_matrix[1][1] * direction.y
+        )
+        Particle(position.copy(), size, color, final_direction, speed, shrinking_speed)
+
+class Gun(Object):
+
+    center = Vector2(400, 300)
+
+    def update(self):
+        self.position = self.center + (pygame.mouse.get_pos()-self.position).normalize()*15
+        self.update_graphics()

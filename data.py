@@ -1,9 +1,12 @@
 import pygame
+from pygame.math import Vector2
 
 objects = []
 screen = None
 
 time, delta_time = 0, 0
+
+camera = Vector2(0, 0)
 
 layers = {
     "background": 0,
