@@ -1,4 +1,4 @@
-import pygame
+import pygame, math
 from pygame import Vector2
 
 import data
@@ -71,3 +71,24 @@ class Bullet(Object):
                 self.kill()
                 obj.kill()
                 break
+
+class Particle(Object) :
+
+    def __init__(self, position, size, color, direction, speed, shrinking_speed) :
+        super(Particle, self).__init__(position, size, color=color)
+        self.direction = direction
+        self.speed = speed
+        self.shrinking_speed = shrinking_speed
+
+    def update(self) :
+        self.position += self.direction * self.speed * data.delta_time
+        self.size -= Vector2(1, 1) * self.shrinking_speed * data.delta_time
+        self.update_graphics()
+        if self.size.x < 0 or self.size.y < 0 :
+            self.kill()
+
+def spawn_particle(position, amount):
+    for i in range(amount):
+        angle = 2 * math.pi * i / amount  # Angle in radians
+        Particle(position, Vector2(20, 20), (255, 0, 0), Vector2(math.cos(angle), math.sin(angle)), 0.2, 0.05)
+
