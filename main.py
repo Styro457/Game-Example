@@ -33,6 +33,9 @@ while gameOn:
         elif event.type == QUIT:
             gameOn = False
 
+        elif event.type == MOUSEBUTTONDOWN:
+            Bullet(player.position.copy(), pygame.mouse.get_pos(), 1)
+
     # Draw background
     data.screen.fill((255, 255, 255))
 
